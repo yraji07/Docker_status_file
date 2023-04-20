@@ -150,14 +150,4 @@ Now check the container and see
 ![preview](nopmysql_img/Screenshot%202023-04-20%20170040.png) 
 
 
- 
-
-
-
-
-
-
-
-
-
 
