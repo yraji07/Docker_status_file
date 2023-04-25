@@ -13,3 +13,25 @@ CMD [ "dotnet", "Nop.Web.dll", "--urls", "http://0.0.0.0:5000" ]
 
 
 
+
+
+
+
+
+vcs
+RUN cd / && git clon
+FROM alpine/git AS e https://github.com/DevProjectsForDevOps/StudentCoursesRestAPI.git && \
+ pwd && ls /StudentCoursesRestAPI
+
+
+FROM python:3.8.3-alpine As Builder
+  LABEL author="raji" organization="qt" project="learning"
+ COPY --from=vcs /StudentCoursesRestAPI /StudentCoursesRestAPI
+   ARG DIRECTORY=StudentCourses
+  RUN cd / StudentCoursesRestAPI cp requirements.txt /StudentCourses
+   ADD . ${DIRECTORY}
+  EXPOSE 8080
+  WORKDIR StudentCoursesRestAPI
+ RUN pip install --upgrade pip
+  RUN pip install -r requirements.txt
+  ENTRYPOINT ["python", "app.py"]
